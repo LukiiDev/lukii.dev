@@ -80,6 +80,7 @@
   .project h2 a{text-decoration:none;transition:color .2s}
   .project h2 a:hover{color:var(--accent)}
   .project h2 sup{font-family:var(--mono);font-size:.9rem;color:var(--mute);margin-left:10px;vertical-align:top;position:relative;top:.7em}
+  .project + .project{margin-top:110px;padding-top:90px;border-top:1px solid var(--line)}
   .grid{display:grid;grid-template-columns:1.25fr 1fr;gap:48px;align-items:start}
   .frame{
     border:1px solid rgba(236,233,224,.3);border-radius:10px;overflow:hidden;background:#0a0a0a;
@@ -141,6 +142,7 @@
     .hero .links{justify-content:flex-start}
     .grid,.about{grid-template-columns:1fr;gap:34px}
     section{padding:64px 0}
+    .project + .project{margin-top:80px;padding-top:64px}
     .top nav{gap:16px}
     .frame{box-shadow:5px 5px 0 #1e1e1b}
     .next{flex-direction:column;gap:6px}
@@ -177,7 +179,7 @@
     </div>
 
     <section id="work">
-      <div class="label mono reveal"><span>Selected work</span><span>(01)</span></div>
+      <div class="label mono reveal"><span>Selected work</span><span>(02)</span></div>
 
       <article class="project reveal">
         <h2><a href="https://resellerbros.pages.dev/" target="_blank" rel="noopener">Resell Bros</a><sup>↗</sup></h2>
@@ -185,7 +187,7 @@
         <div class="grid">
           <div class="frame">
             <div class="chrome"><i></i><i></i><i></i><span>resellerbros.pages.dev</span></div>
-            <div class="shot" id="shot">
+            <div class="shot">
               <iframe src="https://resellerbros.pages.dev/" title="Resell Bros website preview" loading="lazy" tabindex="-1"></iframe>
               <a href="https://resellerbros.pages.dev/" target="_blank" rel="noopener" aria-label="Open Resell Bros website"></a>
             </div>
@@ -198,7 +200,7 @@
 
             <dl>
               <div><dt>What</dt><dd>Catalog and ordering site</dd></div>
-              <div><dt>I did</dt><dd>Design and code</dd></div>
+              <div><dt>Role</dt><dd>Developer (design and code)</dd></div>
               <div><dt>Built with</dt><dd>HTML, CSS, JavaScript</dd></div>
               <div><dt>Hosting</dt><dd>Cloudflare Pages</dd></div>
             </dl>
@@ -208,8 +210,37 @@
         </div>
       </article>
 
+      <article class="project reveal">
+        <h2><a href="https://sshield-dev.onrender.com/" target="_blank" rel="noopener">bio.lol</a><sup>↗</sup></h2>
+
+        <div class="grid">
+          <div class="frame">
+            <div class="chrome"><i></i><i></i><i></i><span>sshield-dev.onrender.com</span></div>
+            <div class="shot">
+              <iframe src="https://sshield-dev.onrender.com/" title="bio.lol website preview" loading="lazy" tabindex="-1"></iframe>
+              <a href="https://sshield-dev.onrender.com/" target="_blank" rel="noopener" aria-label="Open bio.lol website"></a>
+            </div>
+          </div>
+
+          <div class="text">
+            <p>bio.lol is a link-in-bio platform that I own and run. People sign up, claim a username and get their own profile page at bio.lol/@name to share everything about themselves in one link.</p>
+            <p>Profiles are fully customizable: upload a song and a video background that starts playing when visitors arrive, pick from 20 fonts, and add effects like glow, blur, snow, stars and rain.</p>
+            <p>There's also a badge system with OG, Verified, Premium and Founder badges, plus automatic rare badges for 3-letter usernames, which makes short names worth grabbing.</p>
+
+            <dl>
+              <div><dt>What</dt><dd>Link-in-bio platform</dd></div>
+              <div><dt>Role</dt><dd>Owner</dd></div>
+              <div><dt>Features</dt><dd>Profiles, music, badges</dd></div>
+              <div><dt>Hosting</dt><dd>Render</dd></div>
+            </dl>
+
+            <a class="arrow-link" href="https://sshield-dev.onrender.com/" target="_blank" rel="noopener">Visit the site ↗</a>
+          </div>
+        </div>
+      </article>
+
       <div class="next reveal">
-        <div class="t">Project 02 <span>coming soon</span></div>
+        <div class="t">Project 03 <span>coming soon</span></div>
         <a class="arrow-link" href="https://github.com/LukiiDev" target="_blank" rel="noopener">Follow on GitHub ↗</a>
       </div>
     </section>
@@ -248,10 +279,13 @@
 <script>
   document.getElementById('y').textContent = new Date().getFullYear();
 
-  // scale the live preview to fit its frame
-  const shot = document.getElementById('shot');
-  const frameEl = shot.querySelector('iframe');
-  function fit(){ frameEl.style.transform = 'scale(' + (shot.clientWidth / 1280) + ')'; }
+  // scale each live preview to fit its frame
+  const shots = document.querySelectorAll('.shot');
+  function fit(){
+    shots.forEach(s => {
+      s.querySelector('iframe').style.transform = 'scale(' + (s.clientWidth / 1280) + ')';
+    });
+  }
   fit(); window.addEventListener('resize', fit);
 
   // copy email
